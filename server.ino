@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 
 const char * ssid = "ARRIS-2692";
-const char * password = "32352DC099DB705D";
-const int led = 16;
+const char * password = "**********";
+const int Bombillo = 16;
 
 WiFiServer server(80);
 
@@ -10,8 +10,8 @@ void setup() {
   Serial.begin(9600);
   delay(10);
 
-  pinMode(led,OUTPUT);
-  digitalWrite(led,LOW);
+  pinMode(Bombillo,OUTPUT);
+  digitalWrite(Bombillo,LOW);
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
@@ -28,7 +28,7 @@ void setup() {
   Serial.println("WiFi conectado");
   Serial.println("IP address: ");
   IPAddress sensor_ip = WiFi.localIP();
-  digitalWrite(led,HIGH);
+  digitalWrite(Bombillo,HIGH);
 
   server.begin();
   Serial.print("Servidor WEB activo: ");
@@ -59,7 +59,7 @@ void loop() {
     client.stop();
     return;
     }
-  digitalWrite(led,val);
+  digitalWrite(Bombillo,val);
   client.flush();
 
   String s = "HTTP/1.1 200 0K\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\nBombillo ";
